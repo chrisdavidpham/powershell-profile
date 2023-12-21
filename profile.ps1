@@ -1,4 +1,2 @@
-If ((Get-Location) -Match "c:\\git")
-{ 
-    Set-Location "c:\git"
-}
+Write-Output "Loading Profile $($MyInvocation.MyCommand.Path)"
+Start-Transcript -OutputDirectory 'c:\logs\powershell'
