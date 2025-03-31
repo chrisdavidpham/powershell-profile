@@ -37,7 +37,9 @@ $quoteIndex = Get-Random -Minimum 0 -Maximum $motivationalQuotes.Length
 
 Write-Output $motivationalQuotes[$quoteIndex] `n
 
-Set-Location "C:\dev"
+if (-not (Get-Location | Select-Object -ExpandProperty Path | Select-String "\dev\" -SimpleMatch -Quiet)) {
+  Set-Location "C:\dev"
+}
 
 $date = (Get-Date).GetDateTimeFormats()[5]
 Start-Transcript -OutputDirectory "c:\logs\powershell\$date" | Out-Null
