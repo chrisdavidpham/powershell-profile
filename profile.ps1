@@ -1,3 +1,4 @@
+#Requires -Version 7.0
 Write-Output "Loading $profile`n"
 
 $totalDaysOfWork = [math]::Floor(((Get-Date "2055-07-06") - (Get-Date "2011-07-06") | Select-Object -ExpandProperty Days) / 365 * 230)
@@ -41,5 +42,5 @@ if (-not (Get-Location | Select-Object -ExpandProperty Path | Select-String "\de
   Set-Location "C:\dev"
 }
 
-$date = (Get-Date).GetDateTimeFormats()[5]
+$date = ((Get-Date).GetDateTimeFormats() | Where-Object { $_ -match "^\d{4}-\d{2}-\d{2} " }) -split " " | Select-Object -First 1
 Start-Transcript -OutputDirectory "c:\logs\powershell\$date" | Out-Null
